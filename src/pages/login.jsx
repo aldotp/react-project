@@ -32,6 +32,7 @@ function Login() {
       const { token } = data;
       localStorage.setItem("token", token);
       navigate("/leaderboard");
+      window.location.reload();
     } catch (error) {
       setErrorMessage(error.message);
     }

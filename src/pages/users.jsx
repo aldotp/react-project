@@ -1,26 +1,40 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const url = "https://user-access-level.vercel.app";
 
 function UserList() {
-  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${url}/api/users`);
-        if (!response.ok) {
-          throw new Error(`Error! status: ${response.status}`);
+    if (!token) {
+      navigate("/login");
+    } else {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`${url}/api/users`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-auth-token": token,
+            },
+          });
+          if (!response.ok) {
+            throw new Error(`Error! status: ${response.status}`);
+          }
+          const responseData = await response.json();
+          setUsers(responseData.data);
+        } catch (error) {
+          console.log("error", error);
         }
-        const responseData = await response.json();
-        setUsers(responseData.data);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
+      };
 
-    fetchData();
-  }, []);
+      fetchData();
+    }
+  }, [token, navigate]);
+
+  const [users, setUsers] = useState([]);
 
   return (
     <>

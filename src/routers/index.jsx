@@ -6,15 +6,32 @@ import Leaderboard from "../pages/leaderboard";
 import Register from "../pages/register";
 import About from "../pages/about";
 import RootLayout from "../layouts/rootLayout";
+import Blog from "../pages/blogs";
+import { AuthContextProvider } from "../context/authContextProvider";
+import Post from "../pages/blogs/_id";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: (
+      <>
+        <AuthContextProvider>
+          <RootLayout />
+        </AuthContextProvider>
+      </>
+    ),
     children: [
       {
         path: "/",
         element: <Homepage />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/blog/:id",
+        element: <Post />,
       },
       {
         path: "/register",

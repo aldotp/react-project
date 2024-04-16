@@ -1,7 +1,6 @@
 import "./App.css";
 import GlobalContext from "./context/index";
 import { router } from "./routers";
-
 import { RouterProvider } from "react-router-dom";
 
 function App() {

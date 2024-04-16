@@ -1,15 +1,23 @@
 import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 
 function RootLayout() {
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState("");
 
   const handleLogout = () => {
     const confirmed = window.confirm("Are you sure you want to logout?");
     if (confirmed) {
       localStorage.removeItem("token");
       window.location.href = "/"; //
+      window.location.reload();
     }
   };
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken || "");
+  }, []);
 
   return (
     <>

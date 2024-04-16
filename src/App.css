@@ -71,3 +71,33 @@ button {
 button:hover {
   background-color: #d32f2f;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: #000;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #222;
+}
+
+tbody td {
+  padding: 10px;
+  color: white;
+}
+
+tbody td:first-child {
+  font-weight: bold;
+}
+
+tbody td:last-child {
+  text-align: center;
+}
