@@ -29,6 +29,7 @@ function UserList() {
         <table>
           <thead>
             <tr>
+              <th>No</th>
               <th>ID</th>
               <th>Username</th>
               <th>Role</th>
@@ -37,8 +38,9 @@ function UserList() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.map((user, index) => (
               <tr key={user.id}>
+                <td>{index + 1}</td>
                 <td>{user.id}</td>
                 <td>{user.username}</td>
                 <td>{user.role}</td>

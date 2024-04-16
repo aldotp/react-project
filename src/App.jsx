@@ -1,25 +1,20 @@
 import "./App.css";
-import Home from "./pages/index";
-import UserList from "./pages/users";
-import Login from "./pages/login";
-import Leaderboard from "./pages/leaderboard";
-import Register from "./pages/register";
+import GlobalContext from "./context/index";
+import { router } from "./routers";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 
 function App() {
+  const user = {
+    username: "Aldo",
+  };
+
   return (
     <>
       <div className="App">
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/users" element={<UserList />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-          </Routes>
-        </Router>
+        <GlobalContext.Provider value={user}>
+          <RouterProvider router={router} />
+        </GlobalContext.Provider>
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 const URL = "https://user-access-level.vercel.app";
 
@@ -44,7 +43,6 @@ function Register() {
 
   return (
     <>
-      <Navbar />
       <div className="container">
         <h2>Register</h2>
         {errorMessage && <p className="error-message">{errorMessage}</p>}

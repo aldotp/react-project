@@ -2,7 +2,6 @@ import Article from "../components/Article";
 import postsData from "../posts.json";
 import Search from "../components/Search";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 
 function Homepage() {
   const [posts, setPosts] = useState(postsData);
@@ -21,13 +20,20 @@ function Homepage() {
       .then((json) => setExternalPosts(json));
   }, []);
 
+  useEffect(() => {
+    console.log("ada post baru");
+  }, [posts]);
+
+  useEffect(() => {
+    console.log("rende");
+  });
+
   return (
     <>
-      <Navbar />
       <h1>Simple Blog</h1>
       <Search onSearchChange={onSearchChange} totalPosts={totalPosts} />
       {posts.map((props, index) => (
-        <Article {...props} key={index} />
+        <Article {...props} key={index} name={name} />
       ))}
 
       <hr />

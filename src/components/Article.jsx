@@ -1,10 +1,14 @@
 import PropTypes from "prop-types";
+import GlobalContext from "../context/index";
+import { useContext } from "react";
 
 const NewArticle = () => {
   return <span> -- Baru !!!</span>;
 };
 
 function Article(props) {
+  const user = useContext(GlobalContext);
+
   return (
     <>
       <div>
@@ -13,6 +17,9 @@ function Article(props) {
           Date: {props.date} tags: {props.tags.join(", ")}
           {props.isNew && <NewArticle />}
         </small>
+        <div>
+          <small>Ditulis oleh {user.username}</small>
+        </div>
       </div>
     </>
   );
