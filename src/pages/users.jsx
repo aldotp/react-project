@@ -38,8 +38,9 @@ function UserList() {
 
   return (
     <>
-      <div>
-        <h1>User List</h1>
+      <h2>Users</h2>
+      <div className="container-body">
+        <h3></h3>
         <table>
           <thead>
             <tr>
@@ -47,8 +48,6 @@ function UserList() {
               <th>ID</th>
               <th>Username</th>
               <th>Role</th>
-              <th>Score</th>
-              <th>Mentor</th>
             </tr>
           </thead>
           <tbody>
@@ -58,8 +57,6 @@ function UserList() {
                 <td>{user.id}</td>
                 <td>{user.username}</td>
                 <td>{user.role}</td>
-                <td>{user.score}</td>
-                <td>{user.mentor ? user.mentor : "-"}</td>
               </tr>
             ))}
           </tbody>

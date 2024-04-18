@@ -13,7 +13,7 @@ function Leaderboard() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          throw new Error("No token found. Please login again.");
+          navigate("/login");
         }
 
         const response = await fetch(`${URL}/api/leaderboard`, {
@@ -26,7 +26,7 @@ function Leaderboard() {
 
         if (response.status === 401 || response.status === 403) {
           localStorage.removeItem("token");
-          navigate("/");
+          navigate("/login");
           return;
         }
 
@@ -47,25 +47,46 @@ function Leaderboard() {
 
   return (
     <>
-      <div className="container">
-        <h2>Leaderboard</h2>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
-        <div>
-          {leaderboardData.map((classroom, index) => (
-            <div key={index}>
-              <h3>{classroom.class_name}</h3>
-              <p>Total Mentee: {classroom.total_mentee}</p>
-              <p>Mentor: {classroom.mentor}</p>
-              <ul>
-                {classroom.mentees.map((mentee, index) => (
-                  <li key={index}>
-                    {mentee.username} - Score: {mentee.score}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+      <h2>Leaderboard</h2>
+      <div className="container-body">
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <table>
+          <thead>
+            <tr>
+              <th>Class Name</th>
+              <th>Total Mentee</th>
+              <th>Mentor</th>
+              <th>Mentees</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaderboardData.map((classroom, index) => (
+              <tr key={index}>
+                <td>{classroom.class_name}</td>
+                <td>{classroom.total_mentee}</td>
+                <td>{classroom.mentor.username}</td>
+                <td>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Mentee Name</th>
+                        <th>Score</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {classroom.mentees.map((mentee, index) => (
+                        <tr key={index}>
+                          <td>{mentee.username}</td>
+                          <td>{mentee.score}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

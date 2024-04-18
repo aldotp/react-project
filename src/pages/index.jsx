@@ -19,11 +19,13 @@ function Homepage() {
 
   return (
     <>
-      <h1>Simple Blog</h1>
-      <Search onSearchChange={onSearchChange} totalPosts={totalPosts} />
-      {posts.map((props, index) => (
-        <Article {...props} key={index} name={name} />
-      ))}
+      <h2>Simple Blog</h2>
+      <div className="container-body">
+        <Search onSearchChange={onSearchChange} totalPosts={totalPosts} />
+        {posts.map((props, index) => (
+          <Article {...props} key={index} name={name} />
+        ))}
+      </div>
     </>
   );
 }

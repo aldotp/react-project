@@ -40,36 +40,42 @@ function Login() {
 
   return (
     <>
-      <div className="container">
-        <h2>Login</h2>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="btn">
-            Login
-          </button>
-        </form>
+      <div className="container-body">
+        <div className="login">
+          <h2 style={{ textAlign: "center" }}>Login</h2>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="username" style={{ marginRight: "10px" }}>
+                Username :
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password" style={{ marginRight: "10px" }}>
+                Password :
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="btn">
+              Login
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );

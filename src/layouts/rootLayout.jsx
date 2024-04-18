@@ -1,6 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-
 
 function RootLayout() {
   const [token, setToken] = useState("");
@@ -10,7 +9,6 @@ function RootLayout() {
     if (confirmed) {
       localStorage.removeItem("token");
       window.location.href = "/"; //
-      window.location.reload();
     }
   };
 
@@ -21,63 +19,85 @@ function RootLayout() {
 
   return (
     <>
-      <div className="layout-navbar">
-        <Link
-          to="/"
-          activeClassName="active"
-          style={{ marginRight: "10px", textDecoration: "none" }}
-        >
-          Home
-        </Link>
-        {!token && (
-          <>
-            <Link
-              to="/login"
-              activeClassName="active"
-              style={{ marginRight: "10px", textDecoration: "none" }}
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              activeClassName="active"
-              style={{ marginRight: "10px", textDecoration: "none" }}
-            >
-              Register
-            </Link>
-          </>
-        )}
-        {token && (
-          <>
-            <Link
-              to="/leaderboard"
-              activeClassName="active"
-              style={{ marginRight: "10px", textDecoration: "none" }}
-            >
-              Leaderboard
-            </Link>
-            <Link
-              to="/users"
-              activeClassName="active"
-              style={{ marginRight: "10px", textDecoration: "none" }}
-            >
-              Users
-            </Link>
-            <Link
-              to="/about"
-              activeClassName="active"
-              style={{ marginRight: "10px", textDecoration: "none" }}
-            >
-              About
-            </Link>
-            <Link onClick={handleLogout} style={{ textDecoration: "none" }}>
-              Logout
-            </Link>
-          </>
-        )}
-        <hr className="hr-line" />
+      <div className="navbar">
+        <div className="left-links">
+          <NavLink
+            to="/"
+            activeClassName="active"
+            style={{ margin: "10px", color: "white" }}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            activeClassName="active"
+            style={{ margin: "10px", color: "white" }}
+          >
+            About
+          </NavLink>
+          <NavLink
+            to="/blog"
+            activeClassName="active"
+            style={{ margin: "10px", color: "white" }}
+          >
+            Blog
+          </NavLink>
+          {token && (
+            <>
+              <NavLink
+                to="/leaderboard"
+                activeClassName="active"
+                style={{ margin: "10px", color: "white" }}
+              >
+                Leaderboard
+              </NavLink>
+              <NavLink
+                to="/users"
+                activeClassName="active"
+                style={{ margin: "10px", color: "white" }}
+              >
+                Users
+              </NavLink>
+            </>
+          )}
+        </div>
+        <div className="right-links">
+          {!token && (
+            <>
+              <NavLink
+                to="/login"
+                activeClassName="active"
+                style={{ margin: "10px", color: "white" }}
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                activeClassName="active"
+                style={{ margin: "10px", color: "white" }}
+              >
+                Register
+              </NavLink>
+            </>
+          )}
+          {token && (
+            <>
+              <NavLink
+                onClick={handleLogout}
+                style={{ margin: "10px", color: "white" }}
+              >
+                Logout
+              </NavLink>
+            </>
+          )}
+        </div>
       </div>
-      <Outlet />
+      <div className="content">
+        <Outlet />
+      </div>
+      <div className="footer">
+        <p>© 2024 My Company. All rights reserved.</p>
+      </div>
     </>
   );
 }

@@ -44,11 +44,13 @@ function Register() {
   return (
     <>
       <div className="container">
-        <h2>Register</h2>
+        <h2 style={{ textAlign: "center" }}>Register</h2>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" style={{ marginRight: "10px" }}>
+              Username :
+            </label>
             <input
               type="text"
               id="username"
@@ -59,7 +61,9 @@ function Register() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" style={{ marginRight: "10px" }}>
+              Password :
+            </label>
             <input
               type="password"
               id="password"
@@ -70,7 +74,9 @@ function Register() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <label htmlFor="confirmPassword" style={{ marginRight: "10px" }}>
+              Confirm Password :
+            </label>
             <input
               type="password"
               id="confirmPassword"

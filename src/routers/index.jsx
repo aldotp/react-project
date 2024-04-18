@@ -9,6 +9,8 @@ import RootLayout from "../layouts/rootLayout";
 import Blog from "../pages/blogs";
 import { AuthContextProvider } from "../context/authContextProvider";
 import Post from "../pages/blogs/_id";
+import { posts, postByID } from "../apis/loaders";
+import ErrorPage from "../components/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,7 @@ export const router = createBrowserRouter([
         </AuthContextProvider>
       </>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -28,10 +31,12 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+        loader: posts,
       },
       {
         path: "/blog/:id",
         element: <Post />,
+        loader: postByID,
       },
       {
         path: "/register",
