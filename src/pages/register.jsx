@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const URL = "https://user-access-level.vercel.app";
+const URL = import.meta.env.VITE_API_URL;
 
 function Register() {
   const [username, setUsername] = useState("");

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const url = "https://user-access-level.vercel.app";
+const URL = import.meta.env.VITE_API_URL;
 
 function UserList() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function UserList() {
     } else {
       const fetchData = async () => {
         try {
-          const response = await fetch(`${url}/api/users`, {
+          const response = await fetch(`${URL}/api/users`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
